@@ -50,7 +50,11 @@ gameTime
 update
 {
     current.Scene = vars.Helper.Scenes.Active.Name;
+    if (current.Scene == null) {
+        current.Scene = old.Scene;
+    }
     current.DidReset = old.Timer != null && old.Timer > current.Timer;
+    current.DidLevelChange = current.Scene != old.Scene;
     if (current.DidReset)
     {
         current.PrevTimes += old.Timer;
@@ -75,10 +79,7 @@ reset
 
 split
 {
-    if (current.Scene == null) {
-        current.Scene = old.Scene;
-    }
-    if (current.Scene != old.Scene) {
+    if (current.DidLevelChange) {
         current.PrevLevels += current.PrevTimes + current.Timer;
         current.PrevTimes = 0.0;
         return true;
