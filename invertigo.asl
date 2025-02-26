@@ -35,11 +35,15 @@ init
             vars.Helper["IsPaused"] = mono.Make<bool>("PauseManager", 1, "_instance", "Paused");
             return true;
         });
+    //Init some vars
     current.PrevLevels = 0.0;
     current.PrevTimes = 0.0;
+    current.Timer = 0.0;
+    current.Scene = null;
 }
 
-gameTime {
+gameTime
+{
     return TimeSpan.FromSeconds(current.Timer + current.PrevTimes + current.PrevLevels);
 }
 
@@ -67,7 +71,6 @@ reset
         current.PrevTimes = 0.0;
         return true;
     }
-    return false;
 }
 
 split
