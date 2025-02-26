@@ -31,8 +31,8 @@ init
         {
             //Thanks to CaptainRektbeard for figuring out the params...
             vars.Helper["Timer"] = mono.Make<float>("ScoreManager", 1, "_instance", "_timer");
-            vars.Helper["IsRunning"] = mono.Make<bool>("ScoreManager", 1, "_instance", "_running");
-            vars.Helper["IsPaused"] = mono.Make<bool>("PauseManager", 1, "_instance", "Paused");
+            vars.Helper["IsTimerRunning"] = mono.Make<bool>("ScoreManager", 1, "_instance", "_running");
+            vars.Helper["IsGamePaused"] = mono.Make<bool>("PauseManager", 1, "_instance", "Paused");
             return true;
         });
     //Init some vars
@@ -59,7 +59,7 @@ update
 
 start
 {
-    return current.Scene == vars.CoffeeBreakName && current.IsRunning;
+    return current.Scene == vars.CoffeeBreakName && current.IsTimerRunning;
 }
 
 reset
@@ -87,5 +87,5 @@ split
 
 isLoading
 {
-    return !current.IsRunning || current.IsPaused;
+    return !current.IsTimerRunning || current.IsGamePaused;
 }
