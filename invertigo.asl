@@ -1,5 +1,9 @@
 state("Invertigo") {}
 
+/*
+ * v1.1 Additional checks to prevent adding time that should've been cleared instead
+*/
+
 startup
 {
     //UnityASL setup thanks to Ero
@@ -55,7 +59,7 @@ update
     }
     current.DidReset = old.Timer != null && old.Timer > current.Timer;
     current.DidLevelChange = current.Scene != old.Scene;
-    if (current.DidReset)
+    if (current.DidReset && !current.DidLevelChange)
     {
         current.PrevTimes += old.Timer;
     }
@@ -63,7 +67,12 @@ update
 
 start
 {
-    return current.Scene == vars.CoffeeBreakName && current.IsTimerRunning;
+    if (current.Scene == vars.CoffeeBreakName && current.IsTimerRunning)
+    {
+        current.PrevLevels = 0.0;
+        current.PrevTimes = 0.0;
+        return true;
+    }
 }
 
 reset
