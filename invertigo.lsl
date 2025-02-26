@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Layout version="1.6.1">
   <Mode>Vertical</Mode>
-  <X>376</X>
-  <Y>345</Y>
+  <X>919</X>
+  <Y>382</Y>
   <VerticalWidth>286</VerticalWidth>
   <VerticalHeight>542</VerticalHeight>
   <HorizontalWidth>-1</HorizontalWidth>
@@ -190,20 +190,6 @@
         <FilterSubcategories>True</FilterSubcategories>
         <TimingMethod>Default for Leaderboard</TimingMethod>
         <PrecisionType>FromLeaderboard</PrecisionType>
-      </Settings>
-    </Component>
-    <Component>
-      <Path>LiveSplit.ScriptableAutoSplit.dll</Path>
-      <Settings>
-        <Version>1.5</Version>
-        <ScriptPath>C:\Users\fschu\Desktop\invertigo.asl</ScriptPath>
-        <Start>True</Start>
-        <Reset>True</Reset>
-        <Split>True</Split>
-        <CustomSettings>
-          <Setting id="resetMenu" type="bool">True</Setting>
-          <Setting id="resetCoffeeBreak" type="bool">True</Setting>
-        </CustomSettings>
       </Settings>
     </Component>
   </Components>
