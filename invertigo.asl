@@ -2,6 +2,7 @@ state("Invertigo") {}
 
 /*
  * v1.1 Additional checks to prevent adding time that should've been cleared instead
+ * v1.2 Borked the times on splits, shoud be fixed
 */
 
 startup
@@ -59,9 +60,17 @@ update
     }
     current.DidReset = old.Timer != null && old.Timer > current.Timer;
     current.DidLevelChange = current.Scene != old.Scene;
-    if (current.DidReset && !current.DidLevelChange)
+    if (current.DidReset)
     {
-        current.PrevTimes += old.Timer;
+        if (current.DidLevelChange)
+        {
+            current.PrevLevels += current.PrevTimes + old.Timer;
+            current.PrevTimes = 0.0;
+        }
+        else
+        {
+            current.PrevTimes += old.Timer;
+        }
     }
 }
 
@@ -88,11 +97,7 @@ reset
 
 split
 {
-    if (current.DidLevelChange) {
-        current.PrevLevels += current.PrevTimes + current.Timer;
-        current.PrevTimes = 0.0;
-        return true;
-    }
+    return current.DidLevelChange;
 }
 
 isLoading
