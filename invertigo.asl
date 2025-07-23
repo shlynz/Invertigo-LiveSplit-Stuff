@@ -3,6 +3,7 @@ state("Invertigo") { }
 /*
  * v1.1 Additional checks to prevent adding time that should've been cleared instead
  * v1.2 Borked the times on splits, should be fixed
+ * v1.3 Updated to support latest version of game (il2cpp support).
  */
 
 startup
