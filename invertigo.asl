@@ -24,9 +24,9 @@ init
 {
     vars.Helper.TryLoad = (Func<dynamic, bool>)(mono =>
     {
-        vars.Helper["Timer"] = mono.Make<float>("ScoreManager", 1, "_instance", "_timer");
-        vars.Helper["IsTimerRunning"] = mono.Make<bool>("ScoreManager", 1, "_instance", "_running");
-
+        var ScoreManager = mono["ScoreManager", 1];
+        vars.Helper["Timer"] = ScoreManager.Make<float>("_instance", 0x20); // _timer
+        vars.Helper["IsTimerRunning"] = ScoreManager.Make<bool>("_instance", 0x38); // _running
         return true;
     });
 
